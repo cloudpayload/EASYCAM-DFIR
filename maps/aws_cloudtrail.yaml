@@ -1,0 +1,15 @@
+# Example: maps/aws_cloudtrail.yaml
+provider: "AWS"
+sourceType: "CloudTrail"
+# How to identify this log type from the file content
+detector:
+  key: "eventSource"
+  valuePattern: ".amazonaws.com"
+# Field mappings from raw log to normalized event
+mappings:
+  timestamp: "eventTime"
+  actor: "userIdentity.arn"
+  action: "eventName"
+  target: "resources[0].ARN" # This can get complex, start simple
+  source: "sourceIPAddress"
+  status: "errorCode" # If present, otherwise 'Success'
