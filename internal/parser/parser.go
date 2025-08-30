@@ -53,8 +53,8 @@ func isLogFile(path string) bool {
 	ext := strings.ToLower(filepath.Ext(path))
 	logExtensions := []string{".log", ".json", ".csv", ".txt", ".xml", ".yaml", ".yml"}
 	
-	for _, pattern := range logExtensions {
-		if ext == pattern {
+	for _, logExt := range logExtensions {
+		if ext == logExt {
 			return true
 		}
 	}
